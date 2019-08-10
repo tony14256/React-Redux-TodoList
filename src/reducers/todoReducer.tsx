@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, CHANGE_TEXT } from '../constants/action-type';
+import { ADD_TODO, DELETE_TODO, FINISH_TODO, CHANGE_TEXT } from '../constants/action-type';
 
 interface state {
     todos: { no: number; title: string; done: boolean; }[];
@@ -33,20 +33,34 @@ const todoReducer = (state = initialState, action: { type: string, payload: any 
                 ...state,
                 todos: newTodos,
             }
-        case DELETE_TODO:
-            // console.log(action.payload.index)
-            const index = state.todos.find((todo) => {
-                return todo.no === action.payload.index
-            });
-            const cloneTodos = state.todos;
-            if(index)
-                cloneTodos.splice(index.no, 1);
-            for (var i = 0; i < cloneTodos.length; i++) {
-                cloneTodos[i].no = i;
+        case FINISH_TODO:
+            {
+                const index = state.todos.find((todo) => {
+                    return todo.no === action.payload.index
+                });
+                const cloneTodos = state.todos;
+                if(index) 
+                    cloneTodos[index.no].done = true;
+                return { 
+                    ...state,
+                    todos: cloneTodos,
+                }
             }
-            return {
-                ...state,
-                todos: cloneTodos,
+        case DELETE_TODO:
+            {// console.log(action.payload.index)
+                const index = state.todos.find((todo) => {
+                    return todo.no === action.payload.index
+                });
+                const cloneTodos = state.todos;
+                if (index)
+                    cloneTodos.splice(index.no, 1);
+                for (var i = 0; i < cloneTodos.length; i++) {
+                    cloneTodos[i].no = i;
+                }
+                return {
+                    ...state,
+                    todos: cloneTodos,
+                }
             }
         case CHANGE_TEXT:
             return {

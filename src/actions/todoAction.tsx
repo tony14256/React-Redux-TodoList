@@ -1,10 +1,19 @@
-import { ADD_TODO, DELETE_TODO, CHANGE_TEXT } from '../constants/action-type';
+import { ADD_TODO, DELETE_TODO, FINISH_TODO ,CHANGE_TEXT } from '../constants/action-type';
 
 export const addTodo = (todo: any) => {
     return {
         type: ADD_TODO,
         payload: {
             todo: todo,
+        }
+    }
+}
+
+export const finishTodo = (index: number) => {
+    return {
+        type: FINISH_TODO,
+        payload: {
+            index: index,
         }
     }
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import './css.scss';
 
-import { addTodo, changeInput, deleteTodo } from '../../actions/todoAction';
+import { addTodo, changeInput, finishTodo, deleteTodo } from '../../actions/todoAction';
 import Todo from '../Todo';
 
 const mapStateToProps = (state: any) => ({
@@ -21,6 +21,9 @@ const mapDispatchToProps = (dispatch: any) => ({
     },
     onInput: (value: string) => {
         dispatch(changeInput(value));
+    },
+    onFinish: (index:number) => {
+        dispatch(finishTodo(index));
     }
 });
 
@@ -33,8 +36,6 @@ interface props {
 }
 
 const TodoList = ({ onClick, onInput, onDelete, todos, input }: props) => {
-    // console.log('todos : ', todos);
-    // console.log('input : ', input);
     return (
         <div className='todoList'>
             <div className='input'>
