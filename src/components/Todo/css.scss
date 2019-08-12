@@ -6,6 +6,10 @@
   border: 1px #222222 solid;
   border-radius: 5px;
   margin: 5px 0;
+
+  &.done {
+    background: lightblue;
+  }
   .block {
     display: flex;
     align-items: center;
@@ -15,7 +19,7 @@
     &.no {
       width: 20%;
     }
-    &.checkbox{
+    &.checkbox {
       margin: 0;
       width: 10%;
     }

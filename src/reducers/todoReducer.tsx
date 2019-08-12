@@ -40,7 +40,7 @@ const todoReducer = (state = initialState, action: { type: string, payload: any 
                 });
                 const cloneTodos = state.todos;
                 if(index) 
-                    cloneTodos[index.no].done = true;
+                    cloneTodos[index.no].done = !cloneTodos[index.no].done;
                 return { 
                     ...state,
                     todos: cloneTodos,

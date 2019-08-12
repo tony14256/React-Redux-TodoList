@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch: any) => ({
     onInput: (value: string) => {
         dispatch(changeInput(value));
     },
-    onFinish: (index:number) => {
+    onFinish: (index: number) => {
         dispatch(finishTodo(index));
     }
 });
@@ -31,11 +31,12 @@ interface props {
     onClick: (input: any) => void;
     onInput: (value: string) => void;
     onDelete: (index: number) => void;
+    onFinish: (index: number) => void;
     todos: any;
     input: any;
 }
 
-const TodoList = ({ onClick, onInput, onDelete, todos, input }: props) => {
+const TodoList = ({ onClick, onInput, onDelete, onFinish, todos, input }: props) => {
     return (
         <div className='todoList'>
             <div className='input'>
@@ -44,7 +45,7 @@ const TodoList = ({ onClick, onInput, onDelete, todos, input }: props) => {
             </div>
             {
                 todos.map((todo: any) =>
-                    <Todo key={todo.no} onDelete={onDelete} {...todo} />
+                    <Todo key={todo.no} onDelete={onDelete} onFinish={onFinish}  {...todo} />
                 )
             }
         </div>
